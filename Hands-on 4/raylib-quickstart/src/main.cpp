@@ -2,7 +2,7 @@
 #include "rlgl.h"
 #include <cmath>
 
-enum Demo
+enum Transformation
 {
     TRANSLATION = 1,
     ROTATION,
@@ -20,7 +20,7 @@ int main()
     InitWindow(screen_width, screen_height, "Transformaciones matematicas 2D/3D - raylib");
     SetTargetFPS(60);
 
-    Demo current_demo = TRANSLATION;
+    Transformation current_transformation = TRANSLATION;
     bool is_3d_mode = false;
 
     Color translation_color = RED;
@@ -103,12 +103,12 @@ int main()
         float time = (float)GetTime();
 
         // con estas teclas cambiamos la transformacion que se quiere ver
-        if (IsKeyPressed(KEY_ONE)) current_demo = TRANSLATION;
-        if (IsKeyPressed(KEY_TWO)) current_demo = ROTATION;
-        if (IsKeyPressed(KEY_THREE)) current_demo = BOUNCE;
-        if (IsKeyPressed(KEY_FOUR)) current_demo = SINE_MOVEMENT;
-        if (IsKeyPressed(KEY_FIVE)) current_demo = TRAJECTORY;
-        if (IsKeyPressed(KEY_SIX)) current_demo = ORBIT;
+        if (IsKeyPressed(KEY_ONE)) current_transformation = TRANSLATION;
+        if (IsKeyPressed(KEY_TWO)) current_transformation = ROTATION;
+        if (IsKeyPressed(KEY_THREE)) current_transformation = BOUNCE;
+        if (IsKeyPressed(KEY_FOUR)) current_transformation = SINE_MOVEMENT;
+        if (IsKeyPressed(KEY_FIVE)) current_transformation = TRAJECTORY;
+        if (IsKeyPressed(KEY_SIX)) current_transformation = ORBIT;
 
         // con TAB cambiamos entre las versiones 2D y 3D
         if (IsKeyPressed(KEY_TAB))
@@ -186,7 +186,7 @@ int main()
         DrawRectangleRec(animation_area, { 250, 250, 250, 255 });
         DrawRectangleLinesEx(animation_area, 2.0f, LIGHTGRAY);
 
-        if (current_demo == TRANSLATION)
+        if (current_transformation == TRANSLATION)
         {
             DrawText(is_3d_mode ? "Traslacion 3D" : "Traslacion 2D", 55, 145, 28, translation_color);
 
@@ -250,7 +250,7 @@ int main()
             }
         }
 
-        if (current_demo == ROTATION)
+        if (current_transformation == ROTATION)
         {
             DrawText(is_3d_mode ? "Rotacion 3D" : "Rotacion 2D", 55, 145, 28, rotation_color);
 
@@ -324,7 +324,7 @@ int main()
             }
         }
 
-        if (current_demo == BOUNCE)
+        if (current_transformation == BOUNCE)
         {
             DrawText(is_3d_mode ? "Rebote 3D" : "Rebote 2D", 55, 145, 28, bounce_color);
 
@@ -380,7 +380,7 @@ int main()
             }
         }
 
-        if (current_demo == SINE_MOVEMENT)
+        if (current_transformation == SINE_MOVEMENT)
         {
             DrawText(is_3d_mode ? "Movimiento senoidal 3D" : "Movimiento senoidal 2D", 55, 145, 22, sine_color);
 
@@ -474,7 +474,7 @@ int main()
             }
         }
 
-        if (current_demo == TRAJECTORY)
+        if (current_transformation == TRAJECTORY)
         {
             DrawText(is_3d_mode ? "Trayectoria 3D" : "Trayectoria 2D", 55, 145, 28, trajectory_color);
 
@@ -590,7 +590,7 @@ int main()
             }
         }
 
-        if (current_demo == ORBIT)
+        if (current_transformation == ORBIT)
         {
             DrawText(is_3d_mode ? "Orbita 3D" : "Orbita 2D", 55, 145, 28, orbit_color);
 
